@@ -1,0 +1,5 @@
+rainforestapi\persistence\UserDAO.class
+rainforestapi\RainforestApiApplication.class
+rainforestapi\controller\UserController.class
+rainforestapi\persistence\UserFileDAO.class
+rainforestapi\model\User.class

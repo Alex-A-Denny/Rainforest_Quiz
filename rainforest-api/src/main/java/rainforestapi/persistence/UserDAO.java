@@ -1,9 +1,9 @@
-package rainforest-api.persistence;
+package rainforestapi.persistence;
 
 
 import java.io.IOException;
 
-import rainforest-api.model.User;
+import rainforestapi.model.User;
 
 /**
  * Defines the Data Access Object for Users

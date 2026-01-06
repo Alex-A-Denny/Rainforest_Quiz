@@ -1,4 +1,4 @@
-package rainforest-api.model;
+package rainforestapi.model;
 
 import java.util.logging.Logger;
 

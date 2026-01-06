@@ -1,4 +1,4 @@
-package rainforest-api.persistence;
+package rainforestapi.persistence;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import rainforest-api.model.User;
+import rainforestapi.model.User;
 
 @Component
 public class UserFileDAO implements UserDAO{
@@ -85,7 +85,7 @@ public class UserFileDAO implements UserDAO{
             User[] userArray = objectMapper.readValue(new File(filename), User[].class);
 
             for(User user : userArray){
-                users.put(user);
+                users.put(user.getUsername(), user);
             }
             return true;
         } catch (IOException e) {
