@@ -69,6 +69,7 @@ Local Data Storage (JSON Files)
 
 ### Frontend
 
+* Angular
 * HTML
 * CSS
 * Basic JavaScript (for UI feedback)
@@ -258,5 +259,6 @@ Badges are awarded based on learning completion.
 ## 14. Conclusion
 
 Amazon Animal Adventure combines educational content with interactive design and sound engineering practices. By using file-based persistence, a mascot-driven flow, and structured progression, the project delivers both learning value and technical depth while remaining accessible and fun.
+
 
 
