@@ -27,6 +27,30 @@ public class User {
         return new User(username);
     }
 
+    public void setSlothBadge(boolean slothBadge) {
+        this.slothBadge = slothBadge;
+    }
+
+    public void setParrotBadge(boolean parrotBadge) {
+        this.parrotBadge = parrotBadge;
+    }
+
+    public void setJagBadge(boolean jagBadge) {
+        this.jagBadge = jagBadge;
+    }
+
+    public boolean isSlothBadge() {
+        return slothBadge;
+    }
+
+    public boolean isParrotBadge() {
+        return parrotBadge;
+    }
+
+    public boolean isJagBadge() {
+        return jagBadge;
+    }
+
     public String getUsername() {
         return username;
     }
