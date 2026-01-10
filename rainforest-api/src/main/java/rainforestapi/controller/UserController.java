@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,5 +77,23 @@ public class UserController {
         }
     }
 
+    @PutMapping("/{username}/badges/{badgeName}")
+    public ResponseEntity<User> awardBadge(
+        @PathVariable String username,
+        @PathVariable String badgeName
+    ){
+        LOG.log(Level.INFO, "PUT /Users/{0}/badges/{1}", new Object[]{username, badgeName});
+        try{
+            User updatedUser = userDAO.awardBadge(username, badgeName);
+            if( updatedUser != null)
+                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, "IOException when awarding badge: " + badgeName + " to user: " + username, e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
 }

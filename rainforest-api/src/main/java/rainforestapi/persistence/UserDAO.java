@@ -34,6 +34,15 @@ public interface  UserDAO {
      */
     User findUser(String Username) throws IOException;
 
+    /**
+     * Awards a badge to a user
+     * @param username The username of the user to award the badge to
+     * @param badgeName The name of the badge to award
+     * @return The updated user with the new badge
+     * @throws IOException If an issue with underlying storage
+     */
+    User awardBadge(String username, String badgeName) throws IOException;
+
 
 
 

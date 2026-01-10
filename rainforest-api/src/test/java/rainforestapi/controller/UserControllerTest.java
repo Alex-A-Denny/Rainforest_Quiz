@@ -253,4 +253,74 @@ class UserControllerTest {
         assertEquals(testUser, response.getBody());
         verify(userDAO, times(1)).findUser(username);
     }
+
+    @Test
+    void testAwardBadge_Success() throws IOException {
+        String username = "testuser";
+        String badgeName = "explorer";
+        when(userDAO.awardBadge(username, badgeName)).thenReturn(testUser);
+        
+        ResponseEntity<User> response = userController.awardBadge(username, badgeName);
+        
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(testUser, response.getBody());
+        verify(userDAO, times(1)).awardBadge(username, badgeName);
+    }
+
+    @Test
+    void testAwardBadge_UserNotFound() throws IOException {
+        String username = "nonexistent";
+        String badgeName = "explorer";
+        when(userDAO.awardBadge(username, badgeName)).thenReturn(null);
+        
+        ResponseEntity<User> response = userController.awardBadge(username, badgeName);
+        
+        assertNotNull(response);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+        verify(userDAO, times(1)).awardBadge(username, badgeName);
+    }
+
+    @Test
+    void testAwardBadge_IOException() throws IOException {
+        String username = "testuser";
+        String badgeName = "explorer";
+        when(userDAO.awardBadge(username, badgeName)).thenThrow(new IOException("Database error"));
+        
+        ResponseEntity<User> response = userController.awardBadge(username, badgeName);
+        
+        assertNotNull(response);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertNull(response.getBody());
+        verify(userDAO, times(1)).awardBadge(username, badgeName);
+    }
+
+    @Test
+    void testAwardBadge_SpecialCharactersBadge() throws IOException {
+        String username = "testuser";
+        String badgeName = "badge@123";
+        when(userDAO.awardBadge(username, badgeName)).thenReturn(testUser);
+        
+        ResponseEntity<User> response = userController.awardBadge(username, badgeName);
+        
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(testUser, response.getBody());
+        verify(userDAO, times(1)).awardBadge(username, badgeName);
+    }
+
+    @Test
+    void testAwardBadge_EmptyBadgeName() throws IOException {
+        String username = "testuser";
+        String badgeName = "";
+        when(userDAO.awardBadge(username, badgeName)).thenReturn(null);
+        
+        ResponseEntity<User> response = userController.awardBadge(username, badgeName);
+        
+        assertNotNull(response);
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
+        verify(userDAO, times(1)).awardBadge(username, badgeName);
+    }
 }

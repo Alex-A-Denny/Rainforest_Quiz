@@ -39,4 +39,45 @@ public class UserTest {
         User user = new User(null);
         assertNull(user.getUsername());
     }
+
+    @Test
+    public void testSetSlothBadge() {
+        User user = new User("testuser");
+        user.setSlothBadge(true);
+        assertTrue(user.isSlothBadge());
+    }
+
+    @Test
+    public void testSetParrotBadge() {
+        User user = new User("testuser");
+        user.setParrotBadge(true);
+        assertTrue(user.isParrotBadge());
+    }
+
+    @Test
+    public void testSetJagBadge() {
+        User user = new User("testuser");
+        user.setJagBadge(true);
+        assertTrue(user.isJagBadge());
+    }
+
+    @Test
+    public void testSetMultipleBadges() {
+        User user = new User("testuser");
+        user.setSlothBadge(true);
+        user.setParrotBadge(true);
+        user.setJagBadge(false);
+        assertTrue(user.isSlothBadge());
+        assertTrue(user.isParrotBadge());
+        assertFalse(user.isJagBadge());
+    }
+
+    @Test
+    public void testBadgeToggle() {
+        User user = new User("testuser");
+        user.setSlothBadge(true);
+        assertTrue(user.isSlothBadge());
+        user.setSlothBadge(false);
+        assertFalse(user.isSlothBadge());
+    }
 }

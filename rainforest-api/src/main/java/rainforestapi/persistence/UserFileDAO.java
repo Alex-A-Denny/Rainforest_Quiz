@@ -130,5 +130,34 @@ public class UserFileDAO implements UserDAO{
             return getUserArray(username)[0];
         }
     }
+
+
+    /**
+     * {@InheritDoc}
+     */
+    @Override
+    public User awardBadge(String username, String badgeName) throws IOException{
+        synchronized (users) {
+            User user = users.get(username);
+            if(user == null)
+                return null;
+            switch (badgeName.toLowerCase()) {
+                case "sloth":
+                    user.setSlothBadge(true);
+                    break;
+                case "parrot":
+                    user.setParrotBadge(true);
+                    break;
+                case "jag":
+                    user.setJagBadge(true);
+                    break;
+                default:
+                    return null;
+            }
+            users.put(user.getUsername(), user);
+            save();
+            return user;
+        }
+    }
     
 }

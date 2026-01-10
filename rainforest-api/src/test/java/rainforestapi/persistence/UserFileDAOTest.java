@@ -69,4 +69,60 @@ public class UserFileDAOTest {
         
         assertNull(foundUser);
     }
+
+    @Test
+    void testAwardBadgeSloth() throws IOException {
+        userFileDAO.registerUser(new User("testuser"));
+        
+        User result = userFileDAO.awardBadge("testuser", "sloth");
+        
+        assertNotNull(result);
+        assertTrue(result.isSlothBadge());
+    }
+
+    @Test
+    void testAwardBadgeParrot() throws IOException {
+        userFileDAO.registerUser(new User("testuser"));
+        
+        User result = userFileDAO.awardBadge("testuser", "parrot");
+        
+        assertNotNull(result);
+        assertTrue(result.isParrotBadge());
+    }
+
+    @Test
+    void testAwardBadgeJag() throws IOException {
+        userFileDAO.registerUser(new User("testuser"));
+        
+        User result = userFileDAO.awardBadge("testuser", "jag");
+        
+        assertNotNull(result);
+        assertTrue(result.isJagBadge());
+    }
+
+    @Test
+    void testAwardBadgeCaseInsensitive() throws IOException {
+        userFileDAO.registerUser(new User("testuser"));
+        
+        User result = userFileDAO.awardBadge("testuser", "SLOTH");
+        
+        assertNotNull(result);
+        assertTrue(result.isSlothBadge());
+    }
+
+    @Test
+    void testAwardBadgeUserNotFound() throws IOException {
+        User result = userFileDAO.awardBadge("nonexistent", "sloth");
+        
+        assertNull(result);
+    }
+
+    @Test
+    void testAwardBadgeInvalidBadge() throws IOException {
+        userFileDAO.registerUser(new User("testuser"));
+        
+        User result = userFileDAO.awardBadge("testuser", "invalid");
+        
+        assertNull(result);
+    }
 }
