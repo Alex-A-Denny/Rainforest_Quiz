@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class User {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
 
-    @JsonProperty("Username") private final String username;
-    @JsonProperty("SlothBadge") private boolean slothBadge;
-    @JsonProperty("ParrotBadge") private boolean parrotBadge;
-    @JsonProperty("JagBadge") private boolean jagBadge;
+    @JsonProperty("username") private final String username;
+    @JsonProperty("slothBadge") private boolean slothBadge;
+    @JsonProperty("parrotBadge") private boolean parrotBadge;
+    @JsonProperty("jagBadge") private boolean jagBadge;
 
-    public User(@JsonProperty("Username") String username) {
+    public User(@JsonProperty("username") String username) {
         this.username = username;
         this.slothBadge = false;
         this.parrotBadge = false;
@@ -23,7 +23,7 @@ public class User {
     }
 
     @JsonCreator
-    public static User create(@JsonProperty("Username") String username) {
+    public static User create(@JsonProperty("username") String username) {
         return new User(username);
     }
 

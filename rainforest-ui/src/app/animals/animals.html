@@ -1,0 +1,23 @@
+<p>animals works!</p>
+
+@if (!currentUser?.jagBadge) {
+    <button (click)="awardBadge('jagBadge')">Earn Jaguar Badge</button>
+}
+@if (!currentUser?.parrotBadge) {
+    <button (click)="awardBadge('parrotBadge')">Earn Parrot Badge</button>
+}
+@if (!currentUser?.slothBadge) {
+    <button (click)="awardBadge('slothBadge')">Earn Sloth Badge</button>
+}
+<h2>Your Badges:</h2>
+<ul>
+    @if (currentUser?.jagBadge) {
+        <li>Jaguar Badge</li>
+    }
+    @if (currentUser?.parrotBadge) {
+        <li>Parrot Badge</li>
+    }
+    @if (currentUser?.slothBadge) {
+        <li>Sloth Badge</li>
+    }
+</ul>

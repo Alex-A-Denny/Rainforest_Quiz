@@ -22,7 +22,6 @@ public class UserFileDAO implements UserDAO{
 
     private ObjectMapper objectMapper; 
 
-    private static int nextId;
     private String filename;
 
     /**
@@ -138,20 +137,26 @@ public class UserFileDAO implements UserDAO{
     @Override
     public User awardBadge(String username, String badgeName) throws IOException{
         synchronized (users) {
+            System.out.println("AWARDING BADGE " + badgeName + " TO USER " + username);
             User user = users.get(username);
-            if(user == null)
+            if(user == null){
+                System.out.println("USER NOT FOUND");
                 return null;
+            }
             switch (badgeName.toLowerCase()) {
-                case "sloth":
+                case "slothbadge":
                     user.setSlothBadge(true);
                     break;
-                case "parrot":
+                case "parrotbadge":
+                    System.out.println("AWARDING PARROT BADGE");
                     user.setParrotBadge(true);
                     break;
-                case "jag":
+                case "jagbadge":
+                    System.out.println("AWARDING JAG BADGE");
                     user.setJagBadge(true);
                     break;
                 default:
+                    System.out.println(badgeName + " BADGE NOT FOUND");
                     return null;
             }
             users.put(user.getUsername(), user);

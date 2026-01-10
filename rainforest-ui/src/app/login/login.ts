@@ -42,8 +42,7 @@ export class Login {
         //store user in userService
         this.userService.setCurrentUser(user);
         //move to the animal page
-        //TODO : add proper routing
-        this.router.navigate(['/animals']);
+        this.router.navigate([`${user.username}/animals`]);
       }
     })
     if(!foundUser){

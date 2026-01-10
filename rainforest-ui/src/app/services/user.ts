@@ -53,5 +53,26 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
+  awardBadge(badge: string): User | null {
+    const user = this.currentUserSubject.value;
+    
+    if (!user) {
+      return null;
+    }
+
+    //update badge locally
+    const updatedUser = { ...user, [badge]: true };
+    
+    //update backend
+    this.http.put<User>(`${this.baseUrl}/${user.username}/animals/${badge}`, updatedUser, this.httpOptions)
+      .pipe(catchError(this.safe<User>(updatedUser)))
+      .subscribe(returnedUser => {
+        //update the BehaviorSubject with the response from backend
+        this.currentUserSubject.next(returnedUser);
+      });
+    
+    
+    return updatedUser;
+  }
 
 }

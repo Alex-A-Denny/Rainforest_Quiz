@@ -77,12 +77,12 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{username}/badges/{badgeName}")
+    @PutMapping("/{username}/animals/{badgeName}")
     public ResponseEntity<User> awardBadge(
         @PathVariable String username,
         @PathVariable String badgeName
     ){
-        LOG.log(Level.INFO, "PUT /Users/{0}/badges/{1}", new Object[]{username, badgeName});
+        LOG.log(Level.INFO, "PUT /Users/{0}/animals/{1}", new Object[]{username, badgeName});
         try{
             User updatedUser = userDAO.awardBadge(username, badgeName);
             if( updatedUser != null)

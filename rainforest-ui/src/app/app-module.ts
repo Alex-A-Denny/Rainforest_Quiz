@@ -7,11 +7,13 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
 import { Login } from './login/login';
+import { Animals } from './animals/animals';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Login
+    Login,
+    Animals
   ],
   imports: [
     BrowserModule,
