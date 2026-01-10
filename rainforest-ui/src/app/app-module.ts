@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
 import { Login } from './login/login';
 import { Animals } from './animals/animals';
+import { Quiz } from './quiz/quiz';
 
 @NgModule({
   declarations: [
     AppComponent,
     Login,
-    Animals
+    Animals,
+    Quiz
   ],
   imports: [
     BrowserModule,

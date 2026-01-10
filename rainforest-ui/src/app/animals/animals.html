@@ -1,12 +1,27 @@
-<p>animals works!</p>
 
-@if (!currentUser?.jagBadge) {
+<div class="animal-list">
+  @for (animal of animals; track animal.key) {
+    <div class="animal-card">
+      <h3>{{ animal.label }}</h3>
+      @if (currentUser?.[animal.badge]) {
+        <span class="badge-earned">Badge earned</span>
+      } @else {
+        <span class="badge-missing">Badge not earned</span>
+      }
+      <div class="actions">
+        <button (click)="openQuiz(animal.key)">Open {{ animal.label }} Quiz</button>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- @if (!currentUser?.jagBadge) {
     <button (click)="awardBadge('jagBadge')">Earn Jaguar Badge</button>
 }
 @if (!currentUser?.parrotBadge) {
     <button (click)="awardBadge('parrotBadge')">Earn Parrot Badge</button>
 }
-@if (!currentUser?.slothBadge) {
+@if (!currentUser?.slothBadge) {>
     <button (click)="awardBadge('slothBadge')">Earn Sloth Badge</button>
 }
 <h2>Your Badges:</h2>
@@ -20,4 +35,4 @@
     @if (currentUser?.slothBadge) {
         <li>Sloth Badge</li>
     }
-</ul>
+</ul> -->
