@@ -6,6 +6,6 @@ import { Component, signal } from '@angular/core';
   standalone: false,
   styleUrl: './app.css'
 })
-export class App {
-  protected readonly title = signal('rainforest-ui');
+export class AppComponent {
+  protected readonly title = signal('Rainforest Quiz');
 }
