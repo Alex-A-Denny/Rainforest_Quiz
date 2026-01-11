@@ -1,1 +1,154 @@
-<p>quiz works!</p>
+<button (click)="goBack()">Go Back</button>
+
+
+@if (animal == 'jaguar') {
+    <h2>All About Jaguars</h2>
+    
+    @if (!showQuiz) {
+        <div>
+            Jaguars are the biggest wild cats in the Americas and live deep in the Amazon rainforest. 
+            They have strong legs and very powerful jaws, which help them catch animals like deer, monkeys, fish, and even turtles. 
+            Jaguars are great swimmers and often hunt near rivers.
+
+            Jaguars usually live alone and travel over large areas of forest. 
+            Because they are at the top of the food chain, they help keep other animal populations healthy. 
+            If jaguars disappear, the rainforest can become unbalanced.
+        </div>
+
+        <button (click)="startQuiz()">Start Quiz</button>
+    } @else if (!showScore) {
+        <div class="quiz-questions">
+            <div class="question">
+                <h3>1. What kind of animal is a jaguar?</h3>
+                <label><input type="radio" name="q1" value="A" (change)="recordAnswer('q1', 'A')"> A. Bird</label>
+                <label><input type="radio" name="q1" value="B" (change)="recordAnswer('q1', 'B')"> B. Reptile</label>
+                <label><input type="radio" name="q1" value="C" (change)="recordAnswer('q1', 'C')"> C. Big cat</label>
+                <label><input type="radio" name="q1" value="D" (change)="recordAnswer('q1', 'D')"> D. Monkey</label>
+            </div>
+
+            <div class="question">
+                <h3>2. Where do jaguars live?</h3>
+                <label><input type="radio" name="q2" value="A" (change)="recordAnswer('q2', 'A')"> A. Deserts</label>
+                <label><input type="radio" name="q2" value="B" (change)="recordAnswer('q2', 'B')"> B. Arctic ice</label>
+                <label><input type="radio" name="q2" value="C" (change)="recordAnswer('q2', 'C')"> C. The Amazon rainforest</label>
+                <label><input type="radio" name="q2" value="D" (change)="recordAnswer('q2', 'D')"> D. The ocean</label>
+            </div>
+
+            <div class="question">
+                <h3>3. What special skill do jaguars have?</h3>
+                <label><input type="radio" name="q3" value="A" (change)="recordAnswer('q3', 'A')"> A. Flying</label>
+                <label><input type="radio" name="q3" value="B" (change)="recordAnswer('q3', 'B')"> B. Swimming</label>
+                <label><input type="radio" name="q3" value="C" (change)="recordAnswer('q3', 'C')"> C. Digging tunnels</label>
+                <label><input type="radio" name="q3" value="D" (change)="recordAnswer('q3', 'D')"> D. Climbing mountains</label>
+            </div>
+
+            <div class="question">
+                <h3>4. What do jaguars eat?</h3>
+                <label><input type="radio" name="q4" value="A" (change)="recordAnswer('q4', 'A')"> A. Only plants</label>
+                <label><input type="radio" name="q4" value="B" (change)="recordAnswer('q4', 'B')"> B. Only insects</label>
+                <label><input type="radio" name="q4" value="C" (change)="recordAnswer('q4', 'C')"> C. Other animals</label>
+                <label><input type="radio" name="q4" value="D" (change)="recordAnswer('q4', 'D')"> D. Rocks</label>
+            </div>
+
+            <div class="question">
+                <h3>5. Why are jaguars important to the rainforest?</h3>
+                <label><input type="radio" name="q5" value="A" (change)="recordAnswer('q5', 'A')"> A. They help keep animal populations balanced</label>
+                <label><input type="radio" name="q5" value="B" (change)="recordAnswer('q5', 'B')"> B. They plant trees</label>
+                <label><input type="radio" name="q5" value="C" (change)="recordAnswer('q5', 'C')"> C. They clean the rivers</label>
+                <label><input type="radio" name="q5" value="D" (change)="recordAnswer('q5', 'D')"> D. They make the weather</label>
+            </div>
+
+            <button (click)="endQuiz()">End Quiz</button>
+        </div>
+    } @else {
+        <div class="score-result">
+            <h3>Quiz Complete!</h3>
+            <p>You scored {{ score }} out of 5</p>
+            
+            @if (earnedBadge) {
+                <p>Congratulations! You earned the Jaguar Badge!</p>
+            } @else {
+                <p>Good effort! Try again to earn the Jaguar Badge.</p>
+            }
+
+            <button (click)="resetQuiz()">Back to Home</button>
+        </div>
+    }
+} @else if (animal == 'parrot') {
+    <h2>All About Parrots</h2>
+    
+    
+    @if (!showQuiz) {
+        <div>
+            Parrots are some of the most colorful and noisy animals in the Amazon jungle. 
+            There are many kinds, including macaws and parakeets. They have strong curved beaks that 
+            help them crack nuts and eat fruit and seeds. Parrots are very smart birds and often live in groups.
+
+            When parrots eat fruit, they help the rainforest by spreading seeds to new places, 
+            which allows new trees to grow. Some parrots even eat clay from riverbanks to help their stomachs stay healthy.
+        </div>
+
+        <button (click)="startQuiz()">Start Quiz</button>
+    } @else if (!showScore) {
+        <div class="quiz-questions">
+            <div class="question">
+                <h3>1. What helps parrots crack nuts and seeds?</h3>
+                <label><input type="radio" name="q1" value="A" (change)="recordAnswer('q1', 'A')"> A. Sharp claws</label>
+                <label><input type="radio" name="q1" value="B" (change)="recordAnswer('q1', 'B')"> B. Long legs</label>
+                <label><input type="radio" name="q1" value="C" (change)="recordAnswer('q1', 'C')"> C. Strong curved beaks</label>
+                <label><input type="radio" name="q1" value="D" (change)="recordAnswer('q1', 'D')"> D. Soft wings</label>
+            </div>
+
+            <div class="question">
+                <h3>2. Where do parrots usually live?</h3>
+                <label><input type="radio" name="q2" value="A" (change)="recordAnswer('q2', 'A')"> A. Underground</label>
+                <label><input type="radio" name="q2" value="B" (change)="recordAnswer('q2', 'B')"> B. In trees</label>
+                <label><input type="radio" name="q2" value="C" (change)="recordAnswer('q2', 'C')"> C. In water</label>
+                <label><input type="radio" name="q2" value="D" (change)="recordAnswer('q2', 'D')"> D. On the ground</label>
+            </div>
+
+            <div class="question">
+                <h3>3. What do parrots eat?</h3>
+                <label><input type="radio" name="q3" value="A" (change)="recordAnswer('q3', 'A')"> A. Fish only</label>
+                <label><input type="radio" name="q3" value="B" (change)="recordAnswer('q3', 'B')"> B. Meat only</label>
+                <label><input type="radio" name="q3" value="C" (change)="recordAnswer('q3', 'C')"> C. Fruit and seeds</label>
+                <label><input type="radio" name="q3" value="D" (change)="recordAnswer('q3', 'D')"> D. Rocks</label>
+            </div>
+
+            <div class="question">
+                <h3>4. How do parrots help the rainforest?</h3>
+                <label><input type="radio" name="q4" value="A" (change)="recordAnswer('q4', 'A')"> A. Only plants</label>
+                <label><input type="radio" name="q4" value="B" (change)="recordAnswer('q4', 'B')"> B. Only insects</label>
+                <label><input type="radio" name="q4" value="C" (change)="recordAnswer('q4', 'C')"> C. Other animals</label>
+                <label><input type="radio" name="q4" value="D" (change)="recordAnswer('q4', 'D')"> D. Rocks</label>
+            </div>
+
+            <div class="question">
+                <h3>5. Why are jaguars important to the rainforest?</h3>
+                <label><input type="radio" name="q5" value="A" (change)="recordAnswer('q5', 'A')"> A. They help keep animal populations balanced</label>
+                <label><input type="radio" name="q5" value="B" (change)="recordAnswer('q5', 'B')"> B. They plant trees</label>
+                <label><input type="radio" name="q5" value="C" (change)="recordAnswer('q5', 'C')"> C. They clean the rivers</label>
+                <label><input type="radio" name="q5" value="D" (change)="recordAnswer('q5', 'D')"> D. They make the weather</label>
+            </div>
+
+            <button (click)="endQuiz()">End Quiz</button>
+        </div>
+    } @else {
+        <div class="score-result">
+            <h3>Quiz Complete!</h3>
+            <p>You scored {{ score }} out of 5</p>
+            
+            @if (earnedBadge) {
+                <p>Congratulations! You earned the Parrot Badge!</p>
+            } @else {
+                <p>Good effort! Try again to earn the Parrot Badge.</p>
+            }
+
+            <button (click)="resetQuiz()">Back to Home</button>
+        </div>
+    }
+
+} @else if (animal == 'sloth') {
+    <h2>All About Sloths</h2>
+    <!-- Sloth quiz content here -->
+}
