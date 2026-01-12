@@ -9,8 +9,10 @@
 **Amazon Animal Adventure** is a web-based educational application designed to teach grade-school students about animals in the Amazon rainforest. The site uses bright visuals, simple language, and a playful mascot to guide users through learning content, assess understanding via a quiz, and reward completion with badges and a digital certificate.
 
 The project emphasizes **engagement** and **user progression**.
+
 Vision document: https://docs.google.com/document/d/1IZm87gUZxigmwvccD9GuGMK7YbxiwnEuIKRNZyrVNiQ/edit?usp=sharing
 Trello Board: https://trello.com/b/XLZD7aNl/rainforest-project
+
 ---
 
 ## 2. Goals and Objectives
@@ -260,6 +262,7 @@ Badges are awarded based on learning completion.
 ## 14. Conclusion
 
 Amazon Animal Adventure combines educational content with interactive design and sound engineering practices. By using file-based persistence, a mascot-driven flow, and structured progression, the project delivers both learning value and technical depth while remaining accessible and fun.
+
 
 
 
