@@ -11,6 +11,7 @@
 The project emphasizes **engagement** and **user progression**.
 
 Vision document: https://docs.google.com/document/d/1IZm87gUZxigmwvccD9GuGMK7YbxiwnEuIKRNZyrVNiQ/edit?usp=sharing
+
 Trello Board: https://trello.com/b/XLZD7aNl/rainforest-project
 
 ---
@@ -262,6 +263,7 @@ Badges are awarded based on learning completion.
 ## 14. Conclusion
 
 Amazon Animal Adventure combines educational content with interactive design and sound engineering practices. By using file-based persistence, a mascot-driven flow, and structured progression, the project delivers both learning value and technical depth while remaining accessible and fun.
+
 
 
 
