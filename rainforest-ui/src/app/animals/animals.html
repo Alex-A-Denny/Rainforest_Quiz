@@ -1,11 +1,10 @@
-<button (click)="logout()">logout</button>
+<button (click)="logout()" class="logout-btn">logout</button>
 <div class="animal-list">
   @for (animal of animals; track animal.key) {
     <div class="animal-card">
+      <img [src]="animal.image" [alt]="animal.label" class="animal-image">
       <h3>{{ animal.label }}</h3>
-      @if (currentUser?.[animal.badge]) {
-        <span class="badge-earned">Badge earned</span>
-      } @else {
+      @if (!currentUser?.[animal.badge]) {
         <span class="badge-missing">Badge not earned</span>
       }
       <div class="actions">
@@ -13,6 +12,44 @@
       </div>
     </div>
   }
+</div>
+
+<div class="badges-section">
+  <h2>Your Earned Badges</h2>
+  <div class="badges-container">
+    @if (currentUser?.jagBadge) {
+      <div class="badge-item">
+        <img src="/app/images/JaguarBadge.png" alt="Jaguar Badge" class="badge-display">
+        <p>Jaguar</p>
+      </div>
+    }
+    @if (currentUser?.parrotBadge) {
+      <div class="badge-item">
+        <img src="/app/images/ParrotBadge.png" alt="Parrot Badge" class="badge-display">
+        <p>Parrot</p>
+      </div>
+    }
+    @if (currentUser?.slothBadge) {
+      <div class="badge-item">
+        <img src="/app/images/SlothBadge.png" alt="Sloth Badge" class="badge-display">
+        <p>Sloth</p>
+      </div>
+    }
+    @if (!currentUser?.jagBadge && !currentUser?.parrotBadge && !currentUser?.slothBadge) {
+      <p class="no-badges">No badges earned yet. Complete the quizzes to earn badges!</p>
+    }
+  </div>
+</div>
+
+<div class="tricky-joe">
+
+  <img src="/app/images/TrickyJoeElla.png" alt="Trick Joe" class="trick-joe-image">
+  <div class="trick-joe-text">
+    <h3>Did You Know?</h3>
+    <p>Jaguar spots are unique to each individual, much like human fingerprints!</p>
+  </div>
+
+
 </div>
 
 <!-- @if (!currentUser?.jagBadge) {

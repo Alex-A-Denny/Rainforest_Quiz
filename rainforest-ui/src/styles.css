@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-	background-image: url("jungleClipart.png");
+	background-image: url("app/images/jungleClipart.png");
 	background-size: cover;        /* Makes the image fill the screen */
 	background-position: center;   /* Centers the image */
 	background-repeat: no-repeat;  /* Prevents tiling */

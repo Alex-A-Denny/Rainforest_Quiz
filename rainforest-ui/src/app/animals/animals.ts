@@ -17,10 +17,10 @@ type AnimalKey = 'jaguar' | 'parrot' | 'sloth';
 export class Animals {
 
 
-  animals: { key: AnimalKey; label: string; badge: keyof User }[] = [
-    { key: 'jaguar', label: 'Jaguar', badge: 'jagBadge' },
-    { key: 'parrot', label: 'Parrot', badge: 'parrotBadge' },
-    { key: 'sloth',  label: 'Sloth',  badge: 'slothBadge' },
+  animals: { key: AnimalKey; label: string; badge: keyof User, image?: string }[] = [
+    { key: 'jaguar', label: 'Jaguar', badge: 'jagBadge', image: '/app/images/JaguarElla.png'  },
+    { key: 'parrot', label: 'Parrot', badge: 'parrotBadge', image: '/app/images/ParrotElla.png' },
+    { key: 'sloth',  label: 'Sloth',  badge: 'slothBadge', image: '/app/images/SlothElla.png' },
   ];
 
   constructor(private userService: UserService, private router: Router) {}

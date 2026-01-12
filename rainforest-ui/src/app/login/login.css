@@ -1,0 +1,6 @@
+div.login-container {
+    margin-top: 325px; /* Adjust based on header height */
+    margin-bottom: 60px; /* Adjust based on footer height */
+    padding: 1rem;
+    text-align: center;
+}
