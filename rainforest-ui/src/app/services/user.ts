@@ -15,6 +15,7 @@ export interface User{
   providedIn: 'root',
 })
 export class UserService {
+  
   private readonly BASE = 'http://localhost:8080';
   private readonly baseUrl = `${this.BASE}/Users`;
 
@@ -75,4 +76,8 @@ export class UserService {
     return updatedUser;
   }
 
+
+  logout() {
+    this.currentUserSubject.next(null);
+  }
 }

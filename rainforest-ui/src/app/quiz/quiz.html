@@ -67,8 +67,10 @@
             
             @if (earnedBadge) {
                 <p>Congratulations! You earned the Jaguar Badge!</p>
+                <button (click)="goBack()">Back to Home</button>
             } @else {
                 <p>Good effort! Try again to earn the Jaguar Badge.</p>
+                <button (click)="resetQuiz()">Back to Home</button>
             }
 
             <button (click)="resetQuiz()">Back to Home</button>
@@ -117,18 +119,18 @@
 
             <div class="question">
                 <h3>4. How do parrots help the rainforest?</h3>
-                <label><input type="radio" name="q4" value="A" (change)="recordAnswer('q4', 'A')"> A. Only plants</label>
-                <label><input type="radio" name="q4" value="B" (change)="recordAnswer('q4', 'B')"> B. Only insects</label>
-                <label><input type="radio" name="q4" value="C" (change)="recordAnswer('q4', 'C')"> C. Other animals</label>
-                <label><input type="radio" name="q4" value="D" (change)="recordAnswer('q4', 'D')"> D. Rocks</label>
+                <label><input type="radio" name="q4" value="A" (change)="recordAnswer('q4', 'A')"> A. By spreading seeds</label>
+                <label><input type="radio" name="q4" value="B" (change)="recordAnswer('q4', 'B')"> B. By hunting jaguars</label>
+                <label><input type="radio" name="q4" value="C" (change)="recordAnswer('q4', 'C')"> C. By cutting down trees</label>
+                <label><input type="radio" name="q4" value="D" (change)="recordAnswer('q4', 'D')"> D. By building dams</label>
             </div>
 
             <div class="question">
-                <h3>5. Why are jaguars important to the rainforest?</h3>
-                <label><input type="radio" name="q5" value="A" (change)="recordAnswer('q5', 'A')"> A. They help keep animal populations balanced</label>
-                <label><input type="radio" name="q5" value="B" (change)="recordAnswer('q5', 'B')"> B. They plant trees</label>
-                <label><input type="radio" name="q5" value="C" (change)="recordAnswer('q5', 'C')"> C. They clean the rivers</label>
-                <label><input type="radio" name="q5" value="D" (change)="recordAnswer('q5', 'D')"> D. They make the weather</label>
+                <h3>5. What are parrots known for?</h3>
+                <label><input type="radio" name="q5" value="A" (change)="recordAnswer('q5', 'A')"> A. Being very quiet</label>
+                <label><input type="radio" name="q5" value="B" (change)="recordAnswer('q5', 'B')"> B. Being colorful and noisy</label>
+                <label><input type="radio" name="q5" value="C" (change)="recordAnswer('q5', 'C')"> C. Being slow</label>
+                <label><input type="radio" name="q5" value="D" (change)="recordAnswer('q5', 'D')"> D. Being invisible</label>
             </div>
 
             <button (click)="endQuiz()">End Quiz</button>
@@ -140,15 +142,88 @@
             
             @if (earnedBadge) {
                 <p>Congratulations! You earned the Parrot Badge!</p>
+                <button (click)="goBack()">Back to Home</button>
             } @else {
                 <p>Good effort! Try again to earn the Parrot Badge.</p>
+                <button (click)="resetQuiz()">Back to Home</button>
             }
-
-            <button (click)="resetQuiz()">Back to Home</button>
         </div>
     }
 
 } @else if (animal == 'sloth') {
     <h2>All About Sloths</h2>
-    <!-- Sloth quiz content here -->
+    
+    
+    @if (!showQuiz) {
+        <div>
+            Sloths are slow-moving animals that spend almost their entire lives hanging in trees. 
+            They eat mostly leaves, which don’t give them much energy, so they move slowly to save strength. 
+            Sloths sleep a lot and only come down from trees about once a week.
+
+            Sloths have algae growing in their fur, which helps them blend in with green leaves. 
+            This camouflage helps protect them from predators like jaguars and large birds. 
+            Even though sloths move slowly, they are great climbers and swimmers.
+        </div>
+
+        <button (click)="startQuiz()">Start Quiz</button>
+    } @else if (!showScore) {
+        <div class="quiz-questions">
+            <div class="question">
+                <h3>1. Where do sloths spend most of their time?</h3>
+                <label><input type="radio" name="q1" value="A" (change)="recordAnswer('q1', 'A')"> A. On the forest floor</label>
+                <label><input type="radio" name="q1" value="B" (change)="recordAnswer('q1', 'B')"> B. In caves</label>
+                <label><input type="radio" name="q1" value="C" (change)="recordAnswer('q1', 'C')"> C. Hanging in trees</label>
+                <label><input type="radio" name="q1" value="D" (change)="recordAnswer('q1', 'D')"> D. In rivers</label>
+            </div>
+
+            <div class="question">
+                <h3>2. What do sloths mostly eat?</h3>
+                <label><input type="radio" name="q2" value="A" (change)="recordAnswer('q2', 'A')"> A. Meat</label>
+                <label><input type="radio" name="q2" value="B" (change)="recordAnswer('q2', 'B')"> B. Fish</label>
+                <label><input type="radio" name="q2" value="C" (change)="recordAnswer('q2', 'C')"> C. Leaves</label>
+                <label><input type="radio" name="q2" value="D" (change)="recordAnswer('q2', 'D')"> D. Fruit</label>
+            </div>
+
+            <div class="question">
+                <h3>3. Why do sloths move slowly?</h3>
+                <label><input type="radio" name="q3" value="A" (change)="recordAnswer('q3', 'A')"> A. They are lazy</label>
+                <label><input type="radio" name="q3" value="B" (change)="recordAnswer('q3', 'B')"> B. They are sick</label>
+                <label><input type="radio" name="q3" value="C" (change)="recordAnswer('q3', 'C')"> C. They like moving slowly</label>
+                <label><input type="radio" name="q3" value="D" (change)="recordAnswer('q3', 'D')"> D. They save energy</label>
+            </div>
+
+            <div class="question">
+                <h3>4. What grows in a sloth’s fur?</h3>
+                <label><input type="radio" name="q4" value="A" (change)="recordAnswer('q4', 'A')"> A. Flowers</label>
+                <label><input type="radio" name="q4" value="B" (change)="recordAnswer('q4', 'B')"> B. Algae</label>
+                <label><input type="radio" name="q4" value="C" (change)="recordAnswer('q4', 'C')"> C. Feathers</label>
+                <label><input type="radio" name="q4" value="D" (change)="recordAnswer('q4', 'D')"> D. Stones</label>
+            </div>
+
+            <div class="question">
+                <h3>5. Which animal is a predator of sloths?</h3>
+                <label><input type="radio" name="q5" value="A" (change)="recordAnswer('q5', 'A')"> A. Parrot</label>
+                <label><input type="radio" name="q5" value="B" (change)="recordAnswer('q5', 'B')"> B. Jaguar</label>
+                <label><input type="radio" name="q5" value="C" (change)="recordAnswer('q5', 'C')"> C. Frog</label>
+                <label><input type="radio" name="q5" value="D" (change)="recordAnswer('q5', 'D')"> D. Butterfly</label>
+            </div>
+
+            <button (click)="endQuiz()">End Quiz</button>
+        </div>
+    } @else {
+        <div class="score-result">
+            <h3>Quiz Complete!</h3>
+            <p>You scored {{ score }} out of 5</p>
+            
+            @if (earnedBadge) {
+                <p>Congratulations! You earned the Sloth Badge!</p>
+                <button (click)="goBack()">Back to Home</button>
+            } @else {
+                <p>Good effort! Try again to earn the Sloth Badge.</p>
+                <button (click)="resetQuiz()">Back to Home</button>
+            }
+
+            
+        </div>
+    }
 }
