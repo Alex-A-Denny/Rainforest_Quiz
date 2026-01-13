@@ -23,7 +23,7 @@ Trello Board: https://trello.com/b/XLZD7aNl/rainforest-project
 * Teach users basic facts about Amazon rainforest animals
 * Encourage exploration through gated progression
 * Reinforce learning with a quiz
-* Reward completion with badges and a certificate
+* Reward completion with badges
 
 ### Secondary Goals
 
@@ -114,11 +114,8 @@ Persistence is achieved through structured JSON files.
 
 ### Stored Data
 
-* User credentials (hashed passwords)
-* Animal pages viewed per user
-* Quiz attempts and scores
+* User credentials (usernames)
 * Earned badges
-* Certificate eligibility
 
 ---
 
@@ -135,7 +132,7 @@ Persistence is achieved through structured JSON files.
 
 ### Security Considerations
 
-* No plaintext passwords
+* No passwords
 * Input validation on forms
 * Restricted access to protected pages
 
@@ -197,8 +194,8 @@ The mascot improves engagement while enforcing application rules.
 Badges are awarded based on learning completion.
 
 #### Certificate
-
-* Awarded after passing the quiz
+* Originally planned, not yet implemented
+* Awarded after getting all badges
 * Certificate includes:
 
   * User name
@@ -212,10 +209,9 @@ Badges are awarded based on learning completion.
 1. User registers or logs in
 2. User explores animal pages
 3. Progress is tracked automatically
-4. Mascot certification until requirements are met
-5. User takes and passes quiz
-6. Badges are awarded
-7. Certificate is generated 
+4. User takes and passes quiz
+5. Badges are awarded
+6. Certificate is generated 
 
 ---
 
@@ -232,7 +228,7 @@ Badges are awarded based on learning completion.
 ## 11. Error Handling
 
 * Friendly error messages for invalid input
-* Mascot-based feedback for quiz failure
+* Feedback for quiz failure
 * Graceful handling of missing or corrupted data files
 
 ---
@@ -251,8 +247,7 @@ Badges are awarded based on learning completion.
 
 ## 13. Future Enhancements
 
-* Admin interface to add animals
-* Additional rainforest regions
+* Additional animals and ecosystems
 * Audio narration
 * Leaderboards
 * Mobile-first UI improvements
@@ -263,6 +258,7 @@ Badges are awarded based on learning completion.
 ## 14. Conclusion
 
 Amazon Animal Adventure combines educational content with interactive design and sound engineering practices. By using file-based persistence, a mascot-driven flow, and structured progression, the project delivers both learning value and technical depth while remaining accessible and fun.
+
 
 
 
