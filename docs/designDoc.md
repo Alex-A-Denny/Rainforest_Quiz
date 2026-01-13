@@ -107,9 +107,6 @@ Persistence is achieved through structured JSON files.
 ```
 /data
  ├── users.json
- ├── progress.json
- ├── badges.json
- └── quizResults.json
 ```
 
 ### Stored Data
@@ -249,7 +246,7 @@ Badges are awarded based on learning completion.
 
 * Additional animals and ecosystems
 * Audio narration
-* Leaderboards
+* More images of animals (real and stylized)
 * Mobile-first UI improvements
 * Passwords and additional security measures
 
@@ -258,6 +255,7 @@ Badges are awarded based on learning completion.
 ## 14. Conclusion
 
 Amazon Animal Adventure combines educational content with interactive design and sound engineering practices. By using file-based persistence, a mascot-driven flow, and structured progression, the project delivers both learning value and technical depth while remaining accessible and fun.
+
 
 
 
