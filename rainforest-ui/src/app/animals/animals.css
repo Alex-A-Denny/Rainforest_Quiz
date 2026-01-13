@@ -21,7 +21,7 @@
 }
 
 .logout-btn {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 20px;
     padding: 10px 20px;
@@ -89,6 +89,20 @@
 }
 
 .tricky-joe {
-    width: auto;
-    height: 100px;
+    display: block;
+    position: absolute;
+    bottom: 100px;
+    right: 150px;
+}
+.tricky-joe-text {
+    bottom: 100px;
+    right: 350px;
+    position: absolute;
+    float: left;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border: 2px solid #8B4513;
+    border-radius: 8px;
+    color: #333;
 }
