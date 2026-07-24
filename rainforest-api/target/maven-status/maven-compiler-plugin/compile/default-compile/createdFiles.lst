@@ -1,5 +1,9 @@
 rainforestapi\controller\UserController.class
+rainforestapi\persistence\UserRepository.class
 rainforestapi\model\User.class
 rainforestapi\persistence\UserDAO.class
+rainforestapi\persistence\UserEntity.class
 rainforestapi\RainforestApiApplication.class
 rainforestapi\persistence\UserFileDAO.class
+rainforestapi\persistence\UserMySQLDAO.class
+rainforestapi\RainforestApiApplication$1.class
