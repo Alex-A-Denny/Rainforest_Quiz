@@ -20,16 +20,46 @@ import org.springframework.web.bind.annotation.RestController;
 import rainforestapi.model.User;
 import rainforestapi.persistence.UserDAO;
 
+/**
+ * REST Controller for handling user-related endpoints.
+ * 
+ * Provides HTTP endpoints for user registration, retrieval, searching, and badge management.
+ * All endpoints are prefixed with "/Users" and return JSON responses.
+ * 
+ * This controller handles:
+ * - User registration
+ * - Retrieving all users
+ * - Searching for users by username
+ * - Awarding badges to users for completing quiz categories
+ * 
+ * @author Alex Denny
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/Users")
 public class UserController {
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private UserDAO userDAO;
 
+    /**
+     * Constructs a UserController with the specified UserDAO.
+     * 
+     * @param userDAO The data access object for user operations
+     */
     public UserController(UserDAO userDAO){
         this.userDAO = userDAO;
     }
 
+    /**
+     * Registers a new user in the system.
+     * 
+     * Endpoint: POST /Users
+     * Accepts: JSON representation of a User
+     * Returns: The newly created User object with initialized badges
+     * 
+     * @param user The user object to register
+     * @return ResponseEntity containing the registered user or INTERNAL_SERVER_ERROR if an issue occurs
+     */
     @PostMapping(
         consumes = MediaType.APPLICATION_JSON_VALUE, 
         produces = MediaType.APPLICATION_JSON_VALUE
@@ -47,6 +77,14 @@ public class UserController {
         }
     }
 
+    /**
+     * Retrieves all users currently registered in the system.
+     * 
+     * Endpoint: GET /Users
+     * Returns: Array of all User objects
+     * 
+     * @return ResponseEntity containing an array of all users or INTERNAL_SERVER_ERROR if an issue occurs
+     */
     @GetMapping("")
     public ResponseEntity<User[]> getUsers(){
         LOG.log(Level.INFO, "GET /UsersALL");
@@ -60,6 +98,15 @@ public class UserController {
         }
     }
 
+    /**
+     * Searches for a user by username.
+     * 
+     * Endpoint: GET /Users/search?username={username}
+     * Returns: The User object if found, or NOT_FOUND if the user does not exist
+     * 
+     * @param username The username to search for
+     * @return ResponseEntity containing the found user, NOT_FOUND if not found, or INTERNAL_SERVER_ERROR if an issue occurs
+     */
     @GetMapping("/search")
     public ResponseEntity<User> findUsers(@RequestParam String username){
         LOG.log(Level.INFO, "GET /Users/search?username={0}", username);
@@ -77,6 +124,17 @@ public class UserController {
         }
     }
 
+    /**
+     * Awards a badge to a user for completing a quiz category.
+     * 
+     * Endpoint: PUT /Users/{username}/animals/{badgeName}
+     * Supported badges: slothBadge, parrotBadge, jagBadge
+     * Returns: The updated User object with the new badge awarded
+     * 
+     * @param username The username of the user to award the badge to
+     * @param badgeName The name of the badge to award (slothBadge, parrotBadge, or jagBadge)
+     * @return ResponseEntity containing the updated user, NOT_FOUND if user doesn't exist, or INTERNAL_SERVER_ERROR if an issue occurs
+     */
     @PutMapping("/{username}/animals/{badgeName}")
     public ResponseEntity<User> awardBadge(
         @PathVariable String username,

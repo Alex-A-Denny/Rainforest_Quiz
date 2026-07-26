@@ -1,3 +1,17 @@
+/**
+ * Login component for user authentication and registration.
+ * 
+ * This component allows users to:
+ * - View all existing users
+ * - Enter a username to log in
+ * - Create a new user account if the username doesn't exist
+ * - Navigate to the animals page after successful login/registration
+ * 
+ * The component communicates with the backend UserService to fetch existing
+ * users and register new users.
+ * 
+ * @author Alex Denny
+ */
 import { Component } from '@angular/core';
 import { UserService, User } from '../services/user';
 import { Router } from '@angular/router';
@@ -9,19 +23,33 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class Login {
-
+  /** Array of all users fetched from the backend */
   allUsers: User[] = []
 
+  /** Currently logged-in or registered user */
   user?: User;
 
+  /** Username input by the user */
   username = '';
 
+  /**
+   * Constructs a Login component.
+   * @param userService Service for user operations and backend communication
+   * @param router Angular router for navigation
+   */
   constructor(private userService: UserService, private router : Router) {}
 
+  /**
+   * Angular lifecycle hook called after component initialization.
+   * Loads all existing users from the backend.
+   */
   ngOnInit() {
     this.load();
   }
 
+  /**
+   * Fetches all users from the backend and stores them in the component.
+   */
   load() : void{
     this.userService.getAllUsers().subscribe(allUsers => {(this.allUsers = allUsers)
       console.log(this.allUsers.length);
@@ -29,6 +57,13 @@ export class Login {
       });
   }
 
+  /**
+   * Authenticates a user or creates a new user account.
+   * 
+   * If the entered username exists, logs the user in and stores their data.
+   * If the username doesn't exist, creates a new user account.
+   * After successful login/registration, navigates to the animals page.
+   */
   login() : void{
     console.log("Logging in as: " + this.username);
     let foundUser = false;

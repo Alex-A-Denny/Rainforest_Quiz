@@ -1,3 +1,14 @@
+/**
+ * Routing module for the Rainforest Quiz application.
+ * 
+ * Defines all routes in the application:
+ * - /login: User login and registration page
+ * - /:username/animals: Animal selection and quiz category menu
+ * - /quiz/:animal: Quiz page for the selected animal
+ * - /: Default route redirects to login
+ * 
+ * @author Alex Denny
+ */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Login } from './login/login';
