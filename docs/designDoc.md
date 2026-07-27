@@ -80,7 +80,7 @@ Local Data Storage (JSON Files)
 
 ### Persistence
 
-* File-based JSON storage (no SQL)
+* MySQL
 
 ### Build Tool
 
@@ -88,26 +88,22 @@ Local Data Storage (JSON Files)
 
 ---
 
-## 6. Data Storage Design (Non-SQL)
+## 6. Data Storage Design (MySQL)
 
 ### Rationale
 
-This project was originally intended to use SQL; however, this was reconsidered because it added unnecessary complexity
-
-SQL was intentionally excluded to:
-
-* Reduce setup complexity
-* Avoid database deployment issues
-* Focus on application logic and learning flow
-
-Persistence is achieved through structured JSON files.
+This project was originally implemented with JSON files as the database, however this
+file system was replaced with MySQL to reinforce what I was learning at RIT.
 
 ### Example Data Files
 
-```
-/data
- ├── users.json
-```
+Database: Rainforest Quiz
+Table: Users
++----------+-------------+--------------+-----------+
+| username | sloth_badge | parrot_badge | jag_badge |
++----------+-------------+--------------+-----------+
+| user     |           0 |            0 |         0 |
++----------+-------------+--------------+-----------+
 
 ### Stored Data
 
@@ -132,6 +128,7 @@ Persistence is achieved through structured JSON files.
 * No passwords
 * Input validation on forms
 * Restricted access to protected pages
+* No protection from SQL Injection
 
 ---
 
@@ -234,8 +231,7 @@ Badges are awarded based on learning completion.
 
 | Decision             | Justification                      |
 | -------------------- | ---------------------------------- |
-| No SQL database      | Simpler deployment and maintenance |
-| JSON persistence     | Transparent, inspectable data      |
+| SQL database         | Structured  and maintainable       |
 | Mascot gatekeeper    | Increases engagement and clarity   |
 | Spring Boot          | Rapid development and structure    |
 | Badges & certificate | Reinforces motivation              |
