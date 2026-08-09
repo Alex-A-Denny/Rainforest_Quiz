@@ -18,8 +18,17 @@ public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception{
-        http
-            .csrf(AbstractHttpConfigurer::disable);
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.cors(Customizer.withDefaults());
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers(HttpMethod.POST, "/Users").permitAll()
+                .requestMatchers("/error").permitAll()
+                .requestMatchers(HttpMethod.GET, "/Users/search").authenticated()
+                .requestMatchers(HttpMethod.GET, "/UsersAll").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/Users/*/animals/*").authenticated() 
+                .anyRequest().authenticated()     
+        );
+            
 
 
         return http.build();
