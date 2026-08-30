@@ -29,8 +29,9 @@ export class Login {
   /** Currently logged-in or registered user */
   user?: User;
 
-  /** Username input by the user */
+  /** Username and password input by the user */
   username = '';
+  password = '';
 
   /**
    * Constructs a Login component.

@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
  * 
  * The entity stores user information including:
  * - username: The unique identifier for the user
+ * - password: hased 
  * - slothBadge: Whether the user has earned the sloth badge
  * - parrotBadge: Whether the user has earned the parrot badge
  * - jagBadge: Whether the user has earned the jaguar badge
@@ -28,6 +29,9 @@ public class UserEntity {
     @Id
     @Column(nullable = false, length = 100)
     private String username;
+
+    @Column(nullable = false, length = 100)
+    private String password;
 
     @Column(name = "sloth_badge", nullable = false)
     private boolean slothBadge;
@@ -50,12 +54,14 @@ public class UserEntity {
      * Constructs a UserEntity with the specified attributes.
      * 
      * @param username The unique identifier for the user
+     * @param password password for authentication
      * @param slothBadge Whether the user has earned the sloth badge
      * @param parrotBadge Whether the user has earned the parrot badge
      * @param jagBadge Whether the user has earned the jaguar badge
      */
-    public UserEntity(String username, boolean slothBadge, boolean parrotBadge, boolean jagBadge) {
+    public UserEntity(String username, String password, boolean slothBadge, boolean parrotBadge, boolean jagBadge) {
         this.username = username;
+        this.password = password;
         this.slothBadge = slothBadge;
         this.parrotBadge = parrotBadge;
         this.jagBadge = jagBadge;

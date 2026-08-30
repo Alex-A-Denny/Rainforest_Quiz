@@ -8,10 +8,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a user in the Rainforest Quiz application.
  * 
- * Each user has a unique username and can earn three types of badges:
+ * Each user has a unique usernameand can earn three types of badges:
  * - Sloth Badge: Awarded for completing the sloth quiz
  * - Parrot Badge: Awarded for completing the parrot quiz  
  * - Jag Badge: Awarded for completing the jaguar quiz
+ * 
+ * Each user also includes a password for authentication
  * 
  * This class is serializable to/from JSON for API communication.
  * 
@@ -22,6 +24,7 @@ public class User {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
 
     @JsonProperty("username") private final String username;
+    @JsonProperty("password") private final String password;
     @JsonProperty("slothBadge") private boolean slothBadge;
     @JsonProperty("parrotBadge") private boolean parrotBadge;
     @JsonProperty("jagBadge") private boolean jagBadge;
@@ -32,9 +35,12 @@ public class User {
      * All badges are initialized to false when a user is first created.
      * 
      * @param username The unique identifier for the user
+     * @param password password for authentication
      */
-    public User(@JsonProperty("username") String username) {
+    public User(@JsonProperty("username") String username, 
+        @JsonProperty("password") String password) {
         this.username = username;
+        this.password = password;
         this.slothBadge = false;
         this.parrotBadge = false;
         this.jagBadge = false;
@@ -45,11 +51,14 @@ public class User {
      * JSON factory method for creating User instances.
      * 
      * @param username The unique identifier for the user
+     * @param password password for authentication
      * @return A new User instance
      */
     @JsonCreator
-    public static User create(@JsonProperty("username") String username) {
-        return new User(username);
+    public static User create(@JsonProperty("username") String username, 
+        @JsonProperty("password") String password) {
+
+        return new User(username, password);
     }
 
     /**
