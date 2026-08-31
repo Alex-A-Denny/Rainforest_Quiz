@@ -98,4 +98,8 @@ public class UserEntity {
     public void setJagBadge(boolean jagBadge) {
         this.jagBadge = jagBadge;
     }
+
+    public String getPassword() {
+        return this.password;
+    }
 }

@@ -103,4 +103,9 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+    public String getPassword() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPassword'");
+    }
 }

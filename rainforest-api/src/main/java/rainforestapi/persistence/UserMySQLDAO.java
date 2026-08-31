@@ -117,6 +117,7 @@ public class UserMySQLDAO implements UserDAO {
     private UserEntity toEntity(User user) {
         return new UserEntity(
             user.getUsername(),
+            user.getPassword(), 
             user.isSlothBadge(),
             user.isParrotBadge(),
             user.isJagBadge()
@@ -130,7 +131,7 @@ public class UserMySQLDAO implements UserDAO {
      * @return A User domain object with the same data as the entity
      */
     private User toUser(UserEntity entity) {
-        User user = new User(entity.getUsername());
+        User user = new User(entity.getUsername(), entity.getPassword());
         user.setSlothBadge(entity.isSlothBadge());
         user.setParrotBadge(entity.isParrotBadge());
         user.setJagBadge(entity.isJagBadge());
