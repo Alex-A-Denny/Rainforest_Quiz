@@ -27,7 +27,7 @@ import jakarta.persistence.Table;
 public class UserEntity {
 
     @Id
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 12)
     private String username;
 
     @Column(nullable = false, length = 100)

@@ -84,7 +84,7 @@ export class Login {
     if(!foundUser){
       //register/create new user
       console.log("User not found, creating new user: " + this.username);
-      this.userService.createUser(this.username).subscribe(
+      this.userService.createUser(this.username, this.password).subscribe(
         newUser => {
           console.log("New user created: " + newUser.username);
           this.user = newUser; //local cache

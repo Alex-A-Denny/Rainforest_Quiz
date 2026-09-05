@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,14 +40,16 @@ import rainforestapi.model.User;
 public class UserMySQLDAO implements UserDAO {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCrypt;
 
     /**
      * Constructs a UserMySQLDAO with the specified UserRepository.
      * 
      * @param userRepository The Spring Data JPA repository for user operations
      */
-    public UserMySQLDAO(UserRepository userRepository) {
+    public UserMySQLDAO(UserRepository userRepository, BCryptPasswordEncoder bCrypt) {
         this.userRepository = userRepository;
+        this.bCrypt = bCrypt;
     }
 
     @Override
@@ -117,7 +120,7 @@ public class UserMySQLDAO implements UserDAO {
     private UserEntity toEntity(User user) {
         return new UserEntity(
             user.getUsername(),
-            user.getPassword(), 
+            bCrypt.encode(user.getPassword()), 
             user.isSlothBadge(),
             user.isParrotBadge(),
             user.isJagBadge()

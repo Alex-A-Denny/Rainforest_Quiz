@@ -72,8 +72,8 @@ export class UserService {
    * @param username The username for the new user
    * @returns Observable of the newly created User; returns a User with only username on error
    */
-  createUser(username: string): Observable<User> {
-    const newUser = {username: username}
+  createUser(username: string, password: string): Observable<User> {
+    const newUser = { username, password };
     return this.http.post<User>(this.baseUrl, newUser, this.httpOptions)
       .pipe(catchError(this.safe<User>({ username: newUser.username ?? ''} as User)));
   }
