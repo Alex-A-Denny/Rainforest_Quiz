@@ -8,6 +8,7 @@ import java.util.List;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -181,9 +182,14 @@ public class UserController {
     @PutMapping("/{username}/animals/{badgeName}")
     public ResponseEntity<User> awardBadge(
         @PathVariable String username,
-        @PathVariable String badgeName
+        @PathVariable String badgeName,
+        Authentication authentication
     ){
         LOG.log(Level.INFO, "PUT /Users/{0}/animals/{1}", new Object[]{username, badgeName});
+        if (authentication == null || !username.equals(authentication.getName())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
         try{
             User updatedUser = userDAO.awardBadge(username, badgeName);
             if( updatedUser != null)

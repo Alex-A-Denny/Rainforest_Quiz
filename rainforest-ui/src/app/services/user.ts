@@ -15,7 +15,7 @@
  */
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, tap, throwError } from 'rxjs';
 
 /**
  * Interface representing a user in the system.
@@ -138,9 +138,7 @@ export class UserService {
         }),
         catchError((error) => {
           console.error(`Error awarding badge ${badge}:`, error);
-          // Update with locally updated user on error
-          this.currentUserSubject.next(updatedUser);
-          return of(updatedUser);
+          return throwError(() => error);
         })
       );
   }
