@@ -35,6 +35,13 @@ public interface  UserDAO {
     User findUser(String Username) throws IOException;
 
     /**
+     * Authenticates a user using the submitted raw password.
+     *
+     * @return the user when credentials are valid, otherwise null
+     */
+    User authenticateUser(String username, String password) throws IOException;
+
+    /**
      * Awards a badge to a user
      * @param username The username of the user to award the badge to
      * @param badgeName The name of the badge to award

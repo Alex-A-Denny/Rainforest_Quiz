@@ -3,6 +3,7 @@ package rainforestapi.model;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -24,7 +25,7 @@ public class User {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
 
     @JsonProperty("username") private final String username;
-    @JsonProperty("password") private final String password;
+    @JsonIgnore private final String password;
     @JsonProperty("slothBadge") private boolean slothBadge;
     @JsonProperty("parrotBadge") private boolean parrotBadge;
     @JsonProperty("jagBadge") private boolean jagBadge;

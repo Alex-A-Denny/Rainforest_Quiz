@@ -1,18 +1,15 @@
 package rainforestapi.model.request;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
-public class Registration {
+public class LoginRequest {
     @NotBlank
-    @Size(max = 12)
     private String username;
 
     @NotBlank
-    @Size(max = 12)
     private String password;
 
-    public Registration() {
+    public LoginRequest() {
     }
 
     public String getUsername() {

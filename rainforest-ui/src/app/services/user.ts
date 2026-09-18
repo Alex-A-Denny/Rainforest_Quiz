@@ -44,7 +44,8 @@ export class UserService {
   private readonly baseUrl = `${this.BASE}/Users`;
 
   private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    withCredentials: true
   };
 
   private currentUser: User | null = null;
@@ -76,6 +77,14 @@ export class UserService {
     const newUser = { username, password };
     return this.http.post<User>(this.baseUrl, newUser, this.httpOptions)
       .pipe(catchError(this.safe<User>({ username: newUser.username ?? ''} as User)));
+  }
+
+  login(username: string, password: string): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/login`, { username, password }, {
+      ...this.httpOptions
+    }).pipe(
+      tap(user => this.currentUserSubject.next(user))
+    );
   }
 
   /**

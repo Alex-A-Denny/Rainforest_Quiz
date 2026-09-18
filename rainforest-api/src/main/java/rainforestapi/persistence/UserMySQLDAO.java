@@ -78,6 +78,16 @@ public class UserMySQLDAO implements UserDAO {
     }
 
     @Override
+    public User authenticateUser(String username, String password) throws IOException {
+        Optional<UserEntity> entity = userRepository.findUserByUsername(username);
+        if (entity.isEmpty() || !bCrypt.matches(password, entity.get().getPassword())) {
+            return null;
+        }
+
+        return toUser(entity.get());
+    }
+
+    @Override
     public User awardBadge(String username, String badgeName) throws IOException {
         Optional<UserEntity> entityOptional = userRepository.findUserByUsername(username);
         if (entityOptional.isEmpty()) {

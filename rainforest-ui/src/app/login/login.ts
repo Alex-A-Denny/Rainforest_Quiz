@@ -23,15 +23,13 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class Login {
-  /** Array of all users fetched from the backend */
-  allUsers: User[] = []
-
   /** Currently logged-in or registered user */
   user?: User;
 
   /** Username and password input by the user */
   username = '';
   password = '';
+  loginError = '';
 
   /**
    * Constructs a Login component.
@@ -41,58 +39,29 @@ export class Login {
   constructor(private userService: UserService, private router : Router) {}
 
   /**
-   * Angular lifecycle hook called after component initialization.
-   * Loads all existing users from the backend.
-   */
-  ngOnInit() {
-    this.load();
-  }
-
-  /**
-   * Fetches all users from the backend and stores them in the component.
-   */
-  load() : void{
-    this.userService.getAllUsers().subscribe(allUsers => {(this.allUsers = allUsers)
-      console.log(this.allUsers.length);
-      allUsers.forEach(u => console.log(u.username))
-      });
-  }
-
-  /**
-   * Authenticates a user or creates a new user account.
-   * 
-   * If the entered username exists, logs the user in and stores their data.
-   * If the username doesn't exist, creates a new user account.
-   * After successful login/registration, navigates to the animals page.
+   * Authenticates an existing user through the backend session endpoint.
    */
   login() : void{
-    console.log("Logging in as: " + this.username);
-    let foundUser = false;
-
-    this.allUsers.forEach((user) =>{
-      if(user.username === this.username){
-        console.log("User found: " + user.username);
-        this.user = user; //local cache
-        foundUser = true;
-
-        //store user in userService
-        this.userService.setCurrentUser(user);
-        //move to the animal page
+    this.loginError = '';
+    this.userService.login(this.username, this.password).subscribe({
+      next: user => {
+        this.user = user;
         this.router.navigate([`${user.username}/animals`]);
+      },
+      error: () => {
+        this.loginError = 'Invalid username or password.';
       }
-    })
-    if(!foundUser){
-      //register/create new user
-      console.log("User not found, creating new user: " + this.username);
-      this.userService.createUser(this.username, this.password).subscribe(
-        newUser => {
-          console.log("New user created: " + newUser.username);
-          this.user = newUser; //local cache
-          this.userService.setCurrentUser(newUser);
-          this.router.navigate([`${newUser.username}/animals`]);
-        }
-      );
-    }
+    });
+  }
+
+  /** Registers a new user through the backend. */
+  register() : void{
+    this.loginError = '';
+    this.userService.createUser(this.username, this.password).subscribe(newUser => {
+      this.user = newUser;
+      this.userService.setCurrentUser(newUser);
+      this.router.navigate([`${newUser.username}/animals`]);
+    });
   }
 
 

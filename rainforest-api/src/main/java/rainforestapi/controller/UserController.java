@@ -3,7 +3,11 @@ package rainforestapi.controller;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.List;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,9 +20,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 import rainforestapi.model.User;
 import rainforestapi.persistence.UserDAO;
+import rainforestapi.model.request.LoginRequest;
+import rainforestapi.model.request.Registration;
 
 /**
  * REST Controller for handling user-related endpoints.
@@ -39,6 +50,8 @@ import rainforestapi.persistence.UserDAO;
 @RequestMapping("/Users")
 public class UserController {
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
+    private final SecurityContextRepository securityContextRepository =
+        new HttpSessionSecurityContextRepository();
     private UserDAO userDAO;
 
     /**
@@ -48,6 +61,26 @@ public class UserController {
      */
     public UserController(UserDAO userDAO){
         this.userDAO = userDAO;
+    }
+
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> login(
+        @Valid @RequestBody LoginRequest loginRequest,
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws IOException {
+        User user = userDAO.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        SecurityContext context = SecurityContextHolder.createEmptyContext();
+        context.setAuthentication(UsernamePasswordAuthenticationToken.authenticated(
+            user.getUsername(), null, List.of()));
+        SecurityContextHolder.setContext(context);
+        securityContextRepository.saveContext(context, request, response);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     /**
@@ -64,14 +97,24 @@ public class UserController {
         consumes = MediaType.APPLICATION_JSON_VALUE, 
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<User> registerUser(@RequestBody User user){
-        LOG.log(Level.INFO, "POST /user {0}", user);
+    public ResponseEntity<User> registerUser(@Valid @RequestBody Registration registration){
+        LOG.log(Level.INFO, "POST /user {0}", registration);
         try {
-             HttpHeaders header = new HttpHeaders();
+            User user = new User(
+                registration.getUsername(), 
+                registration.getPassword()
+            );
+            
+            HttpHeaders header = new HttpHeaders();
             header.add("Content-Type", "application/json");
             return new ResponseEntity<>(userDAO.registerUser(user),header,HttpStatus.OK);
         }
         catch (IOException e) {
+            User user = new User(
+                registration.getUsername(), 
+                registration.getPassword()
+            );
+
             LOG.log(Level.SEVERE, "IOException when registering user: " + user, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
